@@ -1,11 +1,18 @@
+import os
+
 from fastapi import FastAPI
 
 app = FastAPI()
 
+APP_ENV = os.getenv("APP_ENV", "development")
+
 
 @app.get("/")
 def home():
-    return {"message": "Hello Deployment New version v2!"}
+    return {
+        "message": "Hello Deployment!",
+        "environment": APP_ENV
+    }
 
 
 @app.get("/health")
